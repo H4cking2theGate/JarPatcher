@@ -29,14 +29,18 @@ public class Example4java2 extends PatchTemplate
         targetClass.addMethod(newMethod);
         CtMethod userinfoMethod = targetClass.getDeclaredMethod("userinfo");
         userinfoMethod.setBody("{ return \"Modified userinfo\"; }");
+
+        //delete method
+        CtMethod deleteMethod = targetClass.getDeclaredMethod("delete");
+        targetClass.removeMethod(deleteMethod);
+
     }
 
-    public void patch2() throws NotFoundException, CannotCompileException
+    public void patch2() throws NotFoundException
     {
         CtClass targetClass = getPatchClass("mapper.UserMapper");
         CtMethod ctMethod = targetClass.getDeclaredMethod("findByUsername");
 
-        // 获取方法上的注解
         AnnotationsAttribute annotationAttribute = (AnnotationsAttribute) ctMethod.getMethodInfo().getAttribute(AnnotationsAttribute.visibleTag);
         Annotation annotation = annotationAttribute.getAnnotation("org.apache.ibatis.annotations.Select");
         ArrayMemberValue memberValue = (ArrayMemberValue) annotation.getMemberValue("value");
@@ -52,5 +56,7 @@ public class Example4java2 extends PatchTemplate
         newAnnotationAttribute.addAnnotation(newAnnotation);
         ctMethod.getMethodInfo().addAttribute(newAnnotationAttribute);
     }
+
+
 
 }
