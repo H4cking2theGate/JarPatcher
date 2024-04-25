@@ -84,3 +84,7 @@ public class Example4java2 extends PatchTemplate
         ctMethod.getMethodInfo().addAttribute(newAnnotationAttribute);
 ```
 
+## TODO
+
+- [ ] 支持class文件的patch
+- [ ] 更友好的lib patch

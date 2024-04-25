@@ -8,7 +8,7 @@ public class Main
 {
     public static void main(String[] args)
     {
-        PatchTemplate patch = new Example4java1("example/java1.jar");
+        PatchTemplate patch = new Example4java1("example/java2.jar");
         patch.run();
     }
 }
